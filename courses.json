@@ -10,6 +10,39 @@
     "description": "Définition, cohésion sociale, 6 objectifs fondamentaux, 4 approches, 5 modes d'action, 4 acteurs clés et limites contemporaines.",
     "thumbnail": "cours/politique-famille/slides/slide_01.png",
     "link": "cours/politique-famille/index.html",
-    "tags": ["Politique familiale", "CAF", "Cohésion sociale", "Sécurité sociale", "ST2S", "SES", "Bac"]
+    "tags": [
+      "Politique familiale",
+      "CAF",
+      "Cohésion sociale",
+      "Sécurité sociale",
+      "ST2S",
+      "SES",
+      "Bac"
+    ]
+  },
+  {
+    "id": "politique-ville",
+    "title": "La Politique de la Ville en France",
+    "subject": "ST2S / SES",
+    "badge_color": "#06b6d4",
+    "duration": "05:40",
+    "slides_count": 12,
+    "date": "2026-11-09",
+    "description": "Genèse d'après-guerre et crise des années 70, Loi Lamy 2014, QPV, 4 caractéristiques, acteurs clés (Préfet-Maire) et dispositifs concrets.",
+    "thumbnail": "cours/politique-ville/slides/slide_01.png",
+    "link": "cours/politique-ville/index.html",
+    "tags": [
+      "politique de la ville",
+      "qpv",
+      "loi lamy",
+      "anru",
+      "anct",
+      "minguettes",
+      "st2s",
+      "ses",
+      "bac",
+      "abbé pierre",
+      "cités éducatives"
+    ]
   }
 ]
