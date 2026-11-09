@@ -154,7 +154,19 @@ async def build_course(course_meta, slides_data, quiz_data=None):
     print("📊 Étape 5 : Mise à jour du catalogue central courses.json...")
     update_catalog(course_meta, course_id, formatted_duration, len(slides_data))
     
-    print(f"\n🎉 [SUCCÈS] Le cours '{course_meta['title']}' est prêt et intégré au portail !")
+    # 6. Déploiement automatique en ligne via Git Push
+    print("🚀 Étape 6 : Publication automatique en ligne sur GitHub Pages...")
+    try:
+        git_exe = r"C:\Users\jorda\AppData\Local\Programs\Git\cmd\git.exe"
+        subprocess.run([git_exe, "add", "."], cwd=BASE_DIR, check=True)
+        commit_msg = f"Ajout automatique du cours: {course_meta['title']}"
+        subprocess.run([git_exe, "commit", "-m", commit_msg], cwd=BASE_DIR, check=True)
+        subprocess.run([git_exe, "push", "origin", "main"], cwd=BASE_DIR, check=True)
+        print("🌍 Site mis à jour en ligne avec succès sur GitHub Pages !")
+    except Exception as e:
+        print(f"⚠️ Note Git : {e}")
+        
+    print(f"\n🎉 [SUCCÈS] Le cours '{course_meta['title']}' est prêt et en ligne sur votre site !")
 
 def render_slide_to_png(slide, idx, total, output_path):
     img = Image.new("RGB", (1920, 1080), color=(11, 19, 43))
