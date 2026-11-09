@@ -3,340 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Politique Familiale en France • Le Hub Révision</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>La Politique Familiale en France • Cours & Révisions</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<header class="navbar">
-    <div class="nav-container">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-            <a href="../../index.html" class="btn" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
-                ← Retour au Hub
-            </a>
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-                <span class="brand-tag">ST2S / SES</span>
-                <span style="color: var(--border-color);">|</span>
-                <strong style="font-size: 1.05rem;">La Politique Familiale</strong>
-            </div>
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo-area">
+            <a href="../../index.html" class="breadcrumb-back" style="margin: 0;">← Tous les cours</a>
+            <span style="color: var(--border);">|</span>
+            <span>La Politique Familiale</span>
         </div>
-
-        <div class="nav-controls">
-            <button class="btn" onclick="printBristol()" title="Imprimer la Fiche Bristol pour réviser">
-                🖨️ Fiche Bristol
-            </button>
-            <a href="audio.mp3" class="btn" download="Politique_Familiale_Podcast.mp3" title="Télécharger le son pour écouter en voiture ou sans connexion">
-                🎧 Télécharger Audio MP3
-            </a>
-            <a href="video.mp4" class="btn btn-primary" download="Politique_Familiale_1080p.mp4" title="Télécharger la vidéo complète">
-                📥 Télécharger Vidéo MP4 (1080p)
-            </a>
-            <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Changer de thème">
-                🌙
-            </button>
+        <div class="header-actions">
+            <button class="btn" onclick="window.print()" title="Imprimer la synthèse">🖨️ Imprimer</button>
+            <a href="audio.mp3" class="btn" download="Politique_Familiale_Podcast.mp3" title="Télécharger l'audio pour écoute hors-ligne ou en voiture">🎧 Audio MP3</a>
+            <a href="video.mp4" class="btn btn-primary" download="Politique_Familiale_1080p.mp4" title="Télécharger la vidéo complète">📥 Vidéo 1080p</a>
+            <button class="btn-icon" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Changer le thème">🌙</button>
         </div>
     </div>
 </header>
 
-<!-- Main Course Content -->
-<main class="main-wrapper">
-    <div class="course-layout">
-        
-        <!-- Media Player Column -->
-        <div>
-            <!-- Mode Switcher (Video vs Audio Arrière-Plan) -->
-            <div class="player-mode-wrap">
-                <button id="btnModeVideo" class="mode-tab-btn active" onclick="switchMediaMode('video')">
-                    🎬 Mode Vidéo HD
-                </button>
-                <button id="btnModeAudio" class="mode-tab-btn" onclick="switchMediaMode('audio')">
-                    🎧 Mode Audio / Voiture & GPS (Arrière-plan actif)
-                </button>
-            </div>
+<main class="container">
+    <div class="course-detail-header">
+        <a href="../../index.html" class="breadcrumb-back">← Retour aux cours</a>
+        <div class="course-title-wrap">
+            <h1>La Politique Familiale en France</h1>
+            <p class="course-subtitle">ST2S / SES • Terminale & Première • Durée : 06:31</p>
+        </div>
+    </div>
 
-            <!-- Video Player Frame -->
-            <div class="video-frame-academic" id="videoWrapper">
+    <!-- Sélecteur de mode de lecture -->
+    <div class="media-switcher">
+        <button id="btnModeVideo" class="switcher-btn active" onclick="switchMediaMode('video')">
+            🎬 Vidéo HD
+        </button>
+        <button id="btnModeAudio" class="switcher-btn" onclick="switchMediaMode('audio')">
+            🎧 Audio Arrière-plan (Voiture / GPS)
+        </button>
+    </div>
+
+    <div class="course-columns">
+        <!-- Colonne Principale : Lecteur + Document de Cours -->
+        <div>
+            <!-- Lecteur Vidéo -->
+            <div class="video-container" id="videoWrapper">
                 <video id="mainVideo" controls poster="slides/slide_01.png" playsinline>
                     <source src="video.mp4" type="video/mp4">
                     Votre navigateur ne prend pas en charge la balise vidéo.
                 </video>
             </div>
 
-            <!-- Audio Podcast Frame (Background Friendly for Car / GPS) -->
-            <div class="audio-podcast-frame" id="audioWrapper">
-                <img src="slides/slide_01.png" alt="Pochette Cours" class="podcast-cover-art">
-                <div class="podcast-tag-car">
-                    🚗 Mode Écoute Arrière-Plan Actif • Compatible GPS (Waze / Maps) & Écran Éteint
+            <!-- Lecteur Audio Arrière-Plan (Voiture & GPS) -->
+            <div class="audio-podcast-box" id="audioWrapper">
+                <img src="slides/slide_01.png" alt="Pochette Cours" class="podcast-art">
+                <div class="podcast-info-pill">
+                    🚗 Arrière-plan actif • Compatible GPS (Waze / Maps) & Écran éteint
                 </div>
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem;">La Politique Familiale en France</h3>
-                <p style="font-size: 0.92rem; color: var(--text-muted); max-width: 480px; margin-bottom: 1rem;">
-                    Ce lecteur audio continue de tourner en arrière-plan lorsque vous verrouillez votre écran ou que votre application GPS vous guide.
-                </p>
-                <audio id="mainAudio" src="audio.mp3" controls class="audio-native-bar" preload="metadata"></audio>
+                <h3>La Politique Familiale en France</h3>
+                <p>Ce lecteur continue de fonctionner lorsque vous verrouillez votre écran ou que vous utilisez votre application GPS.</p>
+                <audio id="mainAudio" src="audio.mp3" controls class="audio-player-native" preload="metadata"></audio>
             </div>
 
-            <!-- Video Meta Bar -->
-            <div class="video-meta-bar">
-                <div>
-                    <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--primary);" id="moduleIndicator">MODULE ACTUEL</span>
-                    <h3 style="font-size: 1.15rem; font-weight: 800; margin-top: 0.2rem;" id="currentSlideTitle">1. Introduction & Sommaire</h3>
+            <!-- Fiche de Cours Écrite et Structurée -->
+            <article class="course-document">
+                <div class="doc-header">
+                    <h2>Synthèse du Cours</h2>
+                    <button class="btn" onclick="window.print()">🖨️ Imprimer la fiche</button>
                 </div>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="display: flex; gap: 0.3rem;">
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.78rem;" onclick="setSpeed(1)">1x</button>
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.78rem;" onclick="setSpeed(1.25)">1.25x</button>
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.78rem;" onclick="setSpeed(1.5)">1.5x</button>
+
+                <section class="doc-section">
+                    <h3>1. Définition et Finalité</h3>
+                    <p>La politique familiale désigne l'ensemble des actions menées par les pouvoirs publics pour soutenir les familles, compenser les charges financières liées aux enfants et favoriser la <strong>cohésion sociale</strong>.</p>
+                    <div class="callout">
+                        <strong>Principe de solidarité double :</strong>
+                        <br>• <strong>Solidarité horizontale</strong> : des ménages sans enfant vers les ménages avec enfants.
+                        <br>• <strong>Solidarité verticale</strong> : des revenus les plus aisés vers les familles modestes.
                     </div>
-                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-muted);">06:31</span>
+                </section>
+
+                <section class="doc-section">
+                    <h3>2. Les 6 Objectifs Fondamentaux</h3>
+                    <ul>
+                        <li><strong>Soutenir les familles</strong> : appui à la fonction parentale, accompagnement éducatif (LAEP).</li>
+                        <li><strong>Améliorer les conditions de vie</strong> : accès au logement, prévention de la santé infantile (PMI).</li>
+                        <li><strong>Favoriser la natalité</strong> : assurer le renouvellement des générations et l'équilibre démographique.</li>
+                        <li><strong>Réduire les inégalités sociales</strong> : scolarisation dès 3 ans, cantines et fournitures.</li>
+                        <li><strong>Aider financièrement</strong> : compensation forfaitaire des frais liés à l'éducation et l'entretien des enfants.</li>
+                        <li><strong>Concilier vie pro et vie perso</strong> : développement des structures d'accueil (crèches) et congés parentaux.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section">
+                    <h3>3. Les 4 Grandes Approches</h3>
+                    <ul>
+                        <li><strong>Approche sociale</strong> : axée sur la réponse aux besoins réels et concrets des ménages.</li>
+                        <li><strong>Approche nataliste</strong> : inciter financièrement et fiscalement aux naissances.</li>
+                        <li><strong>Approche ciblée (sous conditions)</strong> : versée uniquement aux revenus modestes (ARS, ASF, prime d'activité).</li>
+                        <li><strong>Approche universaliste</strong> : versée à toutes les familles sans condition de revenus (Allocations Familiales initiales).</li>
+                    </ul>
+                    <div class="callout">
+                        <strong>À retenir pour l'examen :</strong> La France applique aujourd'hui un <em>système mixte</em>, depuis la modulation des Allocations Familiales selon les revenus mise en place en 2015.
+                    </div>
+                </section>
+
+                <section class="doc-section">
+                    <h3>4. Les 5 Modes d'Intervention</h3>
+                    <ul>
+                        <li><strong>Aides financières</strong> : Prestations d'accueil du jeune enfant (PAJE), Allocations Familiales (AF), Allocation de Rentrée Scolaire (ARS).</li>
+                        <li><strong>Services et équipements</strong> : Crèches collectives, micro-crèches, assistantes maternelles agréées, écoles maternelles.</li>
+                        <li><strong>Mesures fiscales</strong> : Quotient familial à l'impôt sur le revenu, crédit d'impôt de 50% pour garde d'enfants.</li>
+                        <li><strong>Actions sociales spécialisées</strong> : Protection Maternelle et Infantile (PMI), Aide Sociale à l'Enfance (ASE).</li>
+                        <li><strong>Mesures liées au travail</strong> : Congé de maternité, congé de paternité et d'accueil de l'enfant (28 jours), congé parental (PreParE).</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section">
+                    <h3>5. Les 4 Acteurs Principaux</h3>
+                    <ul>
+                        <li><strong>L'État</strong> : fixe le cadre législatif, le budget de la Sécurité sociale et les grandes priorités nationales.</li>
+                        <li><strong>La CAF (Caisse d'Allocations Familiales)</strong> : gère et verse la branche famille de la Sécurité sociale.</li>
+                        <li><strong>Les Collectivités territoriales</strong> : communes et départements financent les crèches, la PMI et l'ASE.</li>
+                        <li><strong>Les Associations</strong> : soutiennent les parents au quotidien (UNAF, associations familiales locales).</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section">
+                    <h3>6. Limites et Nouveaux Défis</h3>
+                    <ul>
+                        <li><strong>Persistance de la pauvreté</strong> : les familles monoparentales restent les plus vulnérables.</li>
+                        <li><strong>Manque de places en crèche</strong> : disparités territoriales marquées selon les communes.</li>
+                        <li><strong>Évolution sociologique</strong> : adaptation aux familles recomposées et coparentalités.</li>
+                        <li><strong>Contraintes budgétaires</strong> : équilibre financier pérenne de la branche famille.</li>
+                    </ul>
+                </section>
+            </article>
+
+            <!-- Quiz d'Auto-Évaluation -->
+            <section class="quiz-card">
+                <h3>Test de Connaissances Rapide</h3>
+
+                <div class="quiz-question">
+                    <p class="quiz-q-title">1. Quel organisme gère et verse directement les prestations de la branche famille en France ?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt-btn" onclick="checkAnswer(1, 0)">A) La CPAM (Assurance Maladie)</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(1, 1)">B) La CAF (Caisse d'Allocations Familiales)</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(1, 2)">C) Pôle Emploi / France Travail</button>
+                    </div>
+                    <div id="fb1" class="quiz-feedback"></div>
                 </div>
-            </div>
+
+                <div class="quiz-question">
+                    <p class="quiz-q-title">2. Qu'est-ce que la solidarité horizontale en politique familiale ?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt-btn" onclick="checkAnswer(2, 0)">A) Le transfert des ménages sans enfant vers les ménages avec enfants</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(2, 1)">B) Le transfert des personnes riches vers les personnes modestes uniquement</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(2, 2)">C) L'aide internationale entre pays européens</button>
+                    </div>
+                    <div id="fb2" class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <p class="quiz-q-title">3. Depuis quelle année les allocations familiales en France sont-elles modulées selon les revenus ?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt-btn" onclick="checkAnswer(3, 0)">A) 1945</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(3, 1)">B) 2015</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(3, 2)">C) 2024</button>
+                    </div>
+                    <div id="fb3" class="quiz-feedback"></div>
+                </div>
+            </section>
         </div>
 
-        <!-- Sidebar MOOC Chapters -->
-        <aside class="course-sidebar-card">
-            <div class="sidebar-heading">
-                <span>📑 Chapitres du Cours</span>
-                <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">12 modules</span>
-            </div>
-
-            <div class="chapters-scroll" id="chaptersList">
-                <div class="chapter-btn active" onclick="jumpTo(0)">
-                    <div class="chapter-badge-num">1</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">Introduction & Sommaire</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Vue d'ensemble du cours</div>
-                    </div>
+        <!-- Colonne Latérale : Chapitres Vidéo/Audio -->
+        <aside>
+            <div class="chapters-panel">
+                <div class="chapters-header">
+                    <span>Chapitres</span>
+                    <span>12 modules</span>
                 </div>
-                <div class="chapter-btn" onclick="jumpTo(1)">
-                    <div class="chapter-badge-num">2</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">1. Définition & Rôle clé</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">La cohésion sociale</div>
+                <div class="chapters-list" id="chaptersList">
+                    <div class="chapter-item active" onclick="jumpTo(0)">
+                        <span class="chapter-num">01</span>
+                        <span class="chapter-title-text">Introduction & Sommaire</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(2)">
-                    <div class="chapter-badge-num">3</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">2. Les 6 Objectifs (1/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Soutien, vie & natalité</div>
+                    <div class="chapter-item" onclick="jumpTo(1)">
+                        <span class="chapter-num">02</span>
+                        <span class="chapter-title-text">1. Définition & Rôle clé</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(3)">
-                    <div class="chapter-badge-num">4</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">2. Les 6 Objectifs (2/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Inégalités, aides & emploi</div>
+                    <div class="chapter-item" onclick="jumpTo(2)">
+                        <span class="chapter-num">03</span>
+                        <span class="chapter-title-text">2. Les 6 Objectifs (1/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(4)">
-                    <div class="chapter-badge-num">5</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">3. Les 4 Approches (1/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Sociale vs Nataliste</div>
+                    <div class="chapter-item" onclick="jumpTo(3)">
+                        <span class="chapter-num">04</span>
+                        <span class="chapter-title-text">2. Les 6 Objectifs (2/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(5)">
-                    <div class="chapter-badge-num">6</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">3. Les 4 Approches (2/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Ciblée vs Universaliste</div>
+                    <div class="chapter-item" onclick="jumpTo(4)">
+                        <span class="chapter-num">05</span>
+                        <span class="chapter-title-text">3. Les 4 Approches (1/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(6)">
-                    <div class="chapter-badge-num">7</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">4. Les 5 Modes d'Action (1/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Aides financières & crèches</div>
+                    <div class="chapter-item" onclick="jumpTo(5)">
+                        <span class="chapter-num">06</span>
+                        <span class="chapter-title-text">3. Les 4 Approches (2/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(7)">
-                    <div class="chapter-badge-num">8</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">4. Les 5 Modes d'Action (2/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Fiscalité, social & travail</div>
+                    <div class="chapter-item" onclick="jumpTo(6)">
+                        <span class="chapter-num">07</span>
+                        <span class="chapter-title-text">4. Les 5 Modes d'Action (1/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(8)">
-                    <div class="chapter-badge-num">9</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">5. Les 4 Acteurs (1/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">L'État & La CAF</div>
+                    <div class="chapter-item" onclick="jumpTo(7)">
+                        <span class="chapter-num">08</span>
+                        <span class="chapter-title-text">4. Les 5 Modes d'Action (2/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(9)">
-                    <div class="chapter-badge-num">10</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">5. Les 4 Acteurs (2/2)</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Collectivités & Associations</div>
+                    <div class="chapter-item" onclick="jumpTo(8)">
+                        <span class="chapter-num">09</span>
+                        <span class="chapter-title-text">5. Les 4 Acteurs (1/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(10)">
-                    <div class="chapter-badge-num">11</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">6. Limites & Nouveaux Défis</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Inégalités & places de crèche</div>
+                    <div class="chapter-item" onclick="jumpTo(9)">
+                        <span class="chapter-num">10</span>
+                        <span class="chapter-title-text">5. Les 4 Acteurs (2/2)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(11)">
-                    <div class="chapter-badge-num">12</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">Mémento Examen Final</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">La carte mentale complète</div>
+                    <div class="chapter-item" onclick="jumpTo(10)">
+                        <span class="chapter-num">11</span>
+                        <span class="chapter-title-text">6. Limites & Nouveaux Défis</span>
+                    </div>
+                    <div class="chapter-item" onclick="jumpTo(11)">
+                        <span class="chapter-num">12</span>
+                        <span class="chapter-title-text">Mémento Examen Final</span>
                     </div>
                 </div>
             </div>
         </aside>
-
-        <!-- Printable Bristol Card Section -->
-        <section class="bristol-section">
-            <div class="bristol-sheet">
-                <div class="bristol-header">
-                    <div>
-                        <span class="brand-tag">FICHE BRISTOL OFFICIELLE • PRÊTE POUR LE BAC</span>
-                        <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.3rem;">La Politique Familiale en France</h2>
-                    </div>
-                    <button class="btn btn-primary" onclick="printBristol()">
-                        🖨️ Imprimer la Fiche Bristol (Format A4)
-                    </button>
-                </div>
-
-                <div class="bristol-grid">
-                    <div class="bristol-card" style="border-left-color: var(--primary);">
-                        <h4>1. Définition Clé & Finalité</h4>
-                        <p style="font-size: 0.92rem; margin-bottom: 0.8rem; color: var(--text-main);">
-                            Ensemble des actions des pouvoirs publics pour compenser les charges familiales et favoriser la <strong>cohésion sociale</strong>.
-                        </p>
-                        <ul>
-                            <li><strong>Solidarité horizontale</strong> : sans enfant ➔ avec enfants.</li>
-                            <li><strong>Solidarité verticale</strong> : revenus aisés ➔ revenus modestes.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-emerald);">
-                        <h4>2. Les 6 Objectifs Fondamentaux</h4>
-                        <ul>
-                            <li><strong>Soutenir les familles</strong> : appui éducatif, parentalité, LAEP.</li>
-                            <li><strong>Améliorer la vie</strong> : logement salubre, santé, PMI.</li>
-                            <li><strong>Favoriser la natalité</strong> : renouvellement des générations.</li>
-                            <li><strong>Réduire les inégalités</strong> : école obligatoire dès 3 ans.</li>
-                            <li><strong>Aider financièrement</strong> : compensation des coûts réels.</li>
-                            <li><strong>Vie perso & pro</strong> : crèches, congés parentaux (PreParE).</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-cyan);">
-                        <h4>3. Les 4 Grandes Approches</h4>
-                        <ul>
-                            <li><strong>Sociale</strong> : répondre aux besoins sociaux réels.</li>
-                            <li><strong>Nataliste</strong> : stimuler les naissances et la démographie.</li>
-                            <li><strong>Ciblée</strong> : sous condition de ressources (ARS, ASF).</li>
-                            <li><strong>Universaliste</strong> : versée à tous sans condition (AF).</li>
-                            <li><em>Système mixte en France depuis la réforme de 2015 !</em></li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-amber);">
-                        <h4>4. Les 5 Modes d'Action</h4>
-                        <ul>
-                            <li><strong>Aides financières</strong> : Allocations familiales, PAJE, ARS, ASF.</li>
-                            <li><strong>Équipements & services</strong> : Crèches, écoles maternelles dès 3 ans.</li>
-                            <li><strong>Mesures fiscales</strong> : Quotient familial, crédit d'impôt garde 50%.</li>
-                            <li><strong>Action sociale</strong> : PMI (santé), Protection de l'Enfance (ASE).</li>
-                            <li><strong>Monde du travail</strong> : Congés maternité, paternité (28j), parental.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--primary);">
-                        <h4>5. Les 4 Acteurs Clés</h4>
-                        <ul>
-                            <li><strong>L'État</strong> : fixe les lois, le budget de la Sécu (PLFSS).</li>
-                            <li><strong>La CAF / CNAF</strong> : verse les prestations et finance l'action sociale.</li>
-                            <li><strong>Collectivités</strong> : Départements (ASE/PMI) & Communes (crèches).</li>
-                            <li><strong>Associations</strong> : UNAF/UDAF, Restos du Cœur, Secours Populaire.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-rose);">
-                        <h4>6. Limites & Grands Défis</h4>
-                        <ul>
-                            <li><strong>Pauvreté persistante</strong> : 1 enfant sur 5 sous le seuil de pauvreté.</li>
-                            <li><strong>Nouvelles familles</strong> : 1 famille sur 4 est monoparentale.</li>
-                            <li><strong>Pénurie de modes de garde</strong> : manque de 200 000 places en crèche.</li>
-                            <li><strong>Coût très élevé</strong> : plus de 50 milliards d'euros par an pour l'État.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Quiz Section -->
-        <section class="bristol-section" style="margin-top: 1.5rem;">
-            <div class="bristol-sheet">
-                <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem;">🎯 Mini-Quiz d'Auto-Évaluation</h3>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="font-weight: 700; margin-bottom: 0.6rem;">1. Quelle est la finalité première de la politique familiale selon le cours ?</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn" onclick="checkQ(1, 0, this)">A) Supprimer toutes les aides publiques</button>
-                        <button class="btn" onclick="checkQ(1, 1, this)">B) Favoriser la cohésion sociale et compenser les charges familiales</button>
-                        <button class="btn" onclick="checkQ(1, 2, this)">C) Financer uniquement les universités privées</button>
-                    </div>
-                    <div id="fb1" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
-                </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="font-weight: 700; margin-bottom: 0.6rem;">2. Depuis la réforme de 2015, quelle est la spécificité des Allocations Familiales en France ?</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn" onclick="checkQ(2, 0, this)">A) Elles sont modulées selon les revenus du foyer (système mixte)</button>
-                        <button class="btn" onclick="checkQ(2, 1, this)">B) Elles sont attribuées uniquement dès le 5ème enfant</button>
-                        <button class="btn" onclick="checkQ(2, 2, this)">C) Elles sont réservées aux ménages sans enfant</button>
-                    </div>
-                    <div id="fb2" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
-                </div>
-
-                <div>
-                    <p style="font-weight: 700; margin-bottom: 0.6rem;">3. Quel acteur local a la compétence OBLIGATOIRE de la protection de l'enfance (ASE) et de la PMI ?</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn" onclick="checkQ(3, 0, this)">A) La Mairie / Commune</button>
-                        <button class="btn" onclick="checkQ(3, 1, this)">B) Le Conseil Départemental</button>
-                        <button class="btn" onclick="checkQ(3, 2, this)">C) Le Rectorat d'Académie</button>
-                    </div>
-                    <div id="fb3" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
-                </div>
-            </div>
-        </section>
-
     </div>
 </main>
 
-<!-- Footer -->
-<footer style="background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 2.5rem 2rem; text-align: center; margin-top: auto;">
-    <div style="max-width: 1320px; margin: 0 auto; font-size: 0.88rem; color: var(--text-muted);">
-        <strong>Le Hub Révision</strong> • Fiche et cours de révision en libre accès pour la classe.
-    </div>
+<footer class="site-footer">
+    <p>Plateforme de cours et de révision en libre accès pour la classe.</p>
 </footer>
 
 <script src="../../assets/js/app.js"></script>
 <script>
+    let currentMode = 'video';
     const video = document.getElementById('mainVideo');
     const audio = document.getElementById('mainAudio');
     const videoWrapper = document.getElementById('videoWrapper');
     const audioWrapper = document.getElementById('audioWrapper');
     const btnModeVideo = document.getElementById('btnModeVideo');
     const btnModeAudio = document.getElementById('btnModeAudio');
-
-    const items = document.querySelectorAll('.chapter-btn');
-    const titleDisplay = document.getElementById('currentSlideTitle');
-    const timestamps = [0.0, 31.96, 61.04, 95.16, 130.24, 158.84, 191.68, 221.4, 254.8, 287.0, 318.4, 359.48];
-
-    let currentMode = 'video'; // 'video' | 'audio'
+    const items = document.querySelectorAll('.chapter-item');
+    const timestamps = [0.0, 27.24, 55.44, 83.28, 111.44, 138.92, 168.08, 195.48, 223.36, 250.72, 277.88, 308.88];
 
     function switchMediaMode(mode) {
-        if (mode === currentMode) return;
         currentMode = mode;
-
         if (mode === 'audio') {
             const time = video.currentTime;
             const wasPlaying = !video.paused;
@@ -366,7 +284,7 @@
         if ('mediaSession' in navigator) {
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: title,
-                artist: 'Le Hub Révision',
+                artist: 'Cours & Révisions',
                 album: 'Bac ST2S & SES',
                 artwork: [
                     { src: 'slides/slide_01.png', sizes: '512x512', type: 'image/png' }
@@ -405,18 +323,9 @@
 
     function updateActive(index) {
         items.forEach((item, idx) => {
-            if (idx === index) {
-                item.classList.add('active');
-                titleDisplay.innerText = item.querySelector('div > div:first-child').innerText;
-            } else {
-                item.classList.remove('active');
-            }
+            if (idx === index) item.classList.add('active');
+            else item.classList.remove('active');
         });
-    }
-
-    function setSpeed(speed) {
-        video.playbackRate = speed;
-        audio.playbackRate = speed;
     }
 
     function onTimeUpdate(currentTime) {
@@ -436,22 +345,22 @@
         if (currentMode === 'audio') onTimeUpdate(audio.currentTime);
     });
 
-    function checkQ(q, opt, btn) {
+    function checkAnswer(q, opt) {
         const correct = { 1: 1, 2: 0, 3: 1 };
         const fb = document.getElementById('fb' + q);
         fb.style.display = 'block';
         if (opt === correct[q]) {
-            fb.innerHTML = '<span style="color: var(--accent-emerald);">✅ Excellente réponse ! Bien joué.</span>';
+            fb.style.color = 'var(--success)';
+            fb.innerText = '✓ Bonne réponse !';
         } else {
-            fb.innerHTML = '<span style="color: var(--accent-rose);">❌ Mauvaise réponse. Révisez la fiche au-dessus !</span>';
+            fb.style.color = 'var(--danger)';
+            fb.innerText = '✗ Réponse incorrecte. Relisez la fiche ci-dessus.';
         }
     }
 
-    // Auto setup media session on page load
     document.addEventListener('DOMContentLoaded', () => {
         setupMediaSession("La Politique Familiale en France");
     });
 </script>
-
 </body>
 </html>

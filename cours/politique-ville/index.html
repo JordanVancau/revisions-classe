@@ -3,314 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Politique de la Ville en France • Le Hub Révision</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>La Politique de la Ville en France • Cours & Révisions</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<header class="navbar">
-    <div class="nav-container">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-            <a href="../../index.html" class="btn" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
-                ← Retour au Hub
-            </a>
-            <div style="display: flex; align-items: center; gap: 0.6rem;">
-                <span class="brand-tag">ST2S / SES</span>
-                <span style="color: var(--border-color);">|</span>
-                <strong style="font-size: 1.05rem;">La Politique de la Ville</strong>
-            </div>
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo-area">
+            <a href="../../index.html" class="breadcrumb-back" style="margin: 0;">← Tous les cours</a>
+            <span style="color: var(--border);">|</span>
+            <span>La Politique de la Ville</span>
         </div>
-
-        <div class="nav-controls">
-            <button class="btn" onclick="printBristol()" title="Imprimer la Fiche Bristol pour réviser">
-                🖨️ Fiche Bristol
-            </button>
-            <a href="audio.mp3" class="btn" download="Politique_Ville_Podcast.mp3" title="Télécharger le son pour écouter en voiture ou sans connexion">
-                🎧 Télécharger Audio MP3
-            </a>
-            <a href="video.mp4" class="btn btn-primary" download="Politique_de_la_Ville_1080p.mp4" title="Télécharger la vidéo complète">
-                📥 Télécharger Vidéo MP4 (1080p)
-            </a>
-            <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Changer de thème">
-                🌙
-            </button>
+        <div class="header-actions">
+            <button class="btn" onclick="window.print()" title="Imprimer la synthèse">🖨️ Imprimer</button>
+            <a href="audio.mp3" class="btn" download="Politique_Ville_Podcast.mp3" title="Télécharger l'audio pour écoute hors-ligne ou en voiture">🎧 Audio MP3</a>
+            <a href="video.mp4" class="btn btn-primary" download="Politique_de_la_Ville_1080p.mp4" title="Télécharger la vidéo complète">📥 Vidéo 1080p</a>
+            <button class="btn-icon" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Changer le thème">🌙</button>
         </div>
     </div>
 </header>
 
-<!-- Main Course Content -->
-<main class="main-wrapper">
-    <div class="course-layout">
-        
-        <!-- Media Player Column -->
-        <div>
-            <!-- Mode Switcher (Video vs Audio Arrière-Plan) -->
-            <div class="player-mode-wrap">
-                <button id="btnModeVideo" class="mode-tab-btn active" onclick="switchMediaMode('video')">
-                    🎬 Mode Vidéo HD
-                </button>
-                <button id="btnModeAudio" class="mode-tab-btn" onclick="switchMediaMode('audio')">
-                    🎧 Mode Audio / Voiture & GPS (Arrière-plan actif)
-                </button>
-            </div>
+<main class="container">
+    <div class="course-detail-header">
+        <a href="../../index.html" class="breadcrumb-back">← Retour aux cours</a>
+        <div class="course-title-wrap">
+            <h1>La Politique de la Ville en France</h1>
+            <p class="course-subtitle">ST2S / SES • Terminale & Première • Durée : 05:40</p>
+        </div>
+    </div>
 
-            <!-- Video Player Frame -->
-            <div class="video-frame-academic" id="videoWrapper">
+    <!-- Sélecteur de mode de lecture -->
+    <div class="media-switcher">
+        <button id="btnModeVideo" class="switcher-btn active" onclick="switchMediaMode('video')">
+            🎬 Vidéo HD
+        </button>
+        <button id="btnModeAudio" class="switcher-btn" onclick="switchMediaMode('audio')">
+            🎧 Audio Arrière-plan (Voiture / GPS)
+        </button>
+    </div>
+
+    <div class="course-columns">
+        <!-- Colonne Principale : Lecteur + Document de Cours -->
+        <div>
+            <!-- Lecteur Vidéo -->
+            <div class="video-container" id="videoWrapper">
                 <video id="mainVideo" controls poster="slides/slide_01.png" playsinline>
                     <source src="video.mp4" type="video/mp4">
                     Votre navigateur ne prend pas en charge la balise vidéo.
                 </video>
             </div>
 
-            <!-- Audio Podcast Frame (Background Friendly for Car / GPS) -->
-            <div class="audio-podcast-frame" id="audioWrapper">
-                <img src="slides/slide_01.png" alt="Pochette Cours" class="podcast-cover-art">
-                <div class="podcast-tag-car">
-                    🚗 Mode Écoute Arrière-Plan Actif • Compatible GPS (Waze / Maps) & Écran Éteint
+            <!-- Lecteur Audio Arrière-Plan (Voiture & GPS) -->
+            <div class="audio-podcast-box" id="audioWrapper">
+                <img src="slides/slide_01.png" alt="Pochette Cours" class="podcast-art">
+                <div class="podcast-info-pill">
+                    🚗 Arrière-plan actif • Compatible GPS (Waze / Maps) & Écran éteint
                 </div>
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem;">La Politique de la Ville en France</h3>
-                <p style="font-size: 0.92rem; color: var(--text-muted); max-width: 480px; margin-bottom: 1rem;">
-                    Ce lecteur audio continue de tourner en arrière-plan lorsque vous verrouillez votre écran ou que votre application GPS vous guide.
-                </p>
-                <audio id="mainAudio" src="audio.mp3" controls class="audio-native-bar" preload="metadata"></audio>
+                <h3>La Politique de la Ville en France</h3>
+                <p>Ce lecteur continue de fonctionner lorsque vous verrouillez votre écran ou que vous utilisez votre application GPS.</p>
+                <audio id="mainAudio" src="audio.mp3" controls class="audio-player-native" preload="metadata"></audio>
             </div>
 
-            <!-- Video Meta Bar -->
-            <div class="video-meta-bar">
-                <div>
-                    <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--primary);" id="moduleIndicator">MODULE ACTUEL</span>
-                    <h3 style="font-size: 1.15rem; font-weight: 800; margin-top: 0.2rem;" id="currentSlideTitle">1. Introduction & Sommaire</h3>
+            <!-- Fiche de Cours Écrite et Structurée -->
+            <article class="course-document">
+                <div class="doc-header">
+                    <h2>Synthèse du Cours</h2>
+                    <button class="btn" onclick="window.print()">🖨️ Imprimer la fiche</button>
                 </div>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="display: flex; gap: 0.3rem;">
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.78rem;" onclick="setSpeed(1)">1x</button>
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.78rem;" onclick="setSpeed(1.25)">1.25x</button>
-                        <button class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.78rem;" onclick="setSpeed(1.5)">1.5x</button>
+
+                <section class="doc-section">
+                    <h3>1. Définition Légale (Loi Lamy du 21 février 2014)</h3>
+                    <p>La politique de la ville est une politique de <strong>cohésion urbaine</strong> et de <strong>solidarité</strong>, nationale et locale, envers les quartiers les plus défavorisés (les QPV) et leurs habitants.</p>
+                    <div class="callout">
+                        <strong>Finalité essentielle :</strong> Réduire les écarts de développement entre les territoires, rétablir l'égalité républicaine et garantir à tous les habitants l'accès aux droits fondamentaux (logement, éducation, emploi, santé, sécurité).
                     </div>
-                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-muted);">05:40</span>
+                </section>
+
+                <section class="doc-section">
+                    <h3>2. Genèse Historique : Pourquoi et Comment a-t-elle été créée ?</h3>
+                    <ul>
+                        <li><strong>1945 - 1954 (L'urgence d'après-guerre)</strong> : La France subit de lourdes destructions matérielles, un exode rural massif et l'arrivée de travailleurs immigrés. Crise aiguë du logement, prolifération de bidonvilles et taudis. Hiver 1954 : appel historique de l'Abbé Pierre face aux décès liés au froid.</li>
+                        <li><strong>1955 - 1970 (L'ère des grands ensembles)</strong> : L'État lance la construction massive de barres et tours d'immeubles HLM en périphérie des grandes agglomérations. Objectif : reloger vite dans un confort moderne (eau courante, chauffage central). Mais priorité donnée à la quantité sur la qualité architecturale et manque d'équipements publics.</li>
+                        <li><strong>1973 (La rupture économique des chocs pétroliers)</strong> : Fin des Trente Glorieuses. Désindustrialisation brutale, chômage de masse qui frappe de plein fouet les ouvriers des cités. Les classes moyennes quittent les grands ensembles pour les pavillons individuels : les quartiers HLM se paupérisent et concentrent les précarités.</li>
+                        <li><strong>1977 - 1981 (L'émergence de la politique de la ville)</strong> : Plan "Habitat et Vie Sociale" (HVS) en 1977. Été 1981 : violences urbaines des Minguettes à Vénissieux. Naissance des ZEP (Zones d'Éducation Prioritaire) et formalisation du concept moderne d'<em>exclusion sociale</em>.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section">
+                    <h3>3. Les 4 Piliers Incontournables</h3>
+                    <ul>
+                        <li><strong>Territoriale</strong> : ciblée précisément sur les zones géographiques prioritaires en difficulté (QPV).</li>
+                        <li><strong>Transversale</strong> : décloisonne l'ensemble des politiques publiques (école, emploi, sécurité, rénovation urbaine, santé).</li>
+                        <li><strong>Partenariale et Contractuelle</strong> : formalisée par le Contrat de Ville (durée de 6 ans), co-signé par l'ensemble des partenaires.</li>
+                        <li><strong>Participative</strong> : association obligatoire des habitants via les Conseils Citoyens (loi 2014).</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section">
+                    <h3>4. Les QPV : Critères d'Entrée depuis la Loi 2014</h3>
+                    <p>La réforme Lamy a supprimé l'enchevêtrement des anciens zonages (ZUS, ZRU, ZFU) pour créer un cadre unique :</p>
+                    <ul>
+                        <li>Appartenir à une unité urbaine de <strong>plus de 10 000 habitants</strong>.</li>
+                        <li>Regrouper un minimum de <strong>1 000 habitants</strong> dans le périmètre du quartier.</li>
+                        <li><strong>Critère unique de pauvreté</strong> : concentration de ménages vivant avec un revenu inférieur à 11 250 € par an (60% du revenu médian national).</li>
+                    </ul>
+                    <div class="callout">
+                        <strong>Nouveau cadre "Quartiers 2030" :</strong> Axé sur 4 priorités renouvelées : plein emploi et insertion, émancipation par l'école, transition écologique et cadre de vie sécurisé.
+                    </div>
+                </section>
+
+                <section class="doc-section">
+                    <h3>5. Les Acteurs Majeurs</h3>
+                    <ul>
+                        <li><strong>Niveau National</strong> : Premier ministre (Comité Interministériel des Villes - CIV), ANCT (Agence Nationale de la Cohésion des Territoires), ANRU (Agence Nationale pour la Rénovation Urbaine - programmes de démolition/reconstruction), ONPV (Observatoire National de la Politique de la Ville).</li>
+                        <li><strong>Niveau Local</strong> : Le binôme indispensable <strong>Préfet de département (État)</strong> et <strong>Maire / Président d'intercommunalité (EPCI)</strong>, aux côtés des bailleurs sociaux HLM, de la CAF et des associations de proximité.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section">
+                    <h3>6. Les Dispositifs Clés du Terrain</h3>
+                    <ul>
+                        <li><strong>Éducation & Jeunesse</strong> : Cités Éducatives (alliance 0-25 ans école-famille-ville), Cordées de la Réussite, Classes Préparatoires Intégrées (CPI).</li>
+                        <li><strong>Emploi & Garde</strong> : Crèches AVIP (places réservées pour les parents en recherche d'emploi ou formation), dispositif Sésame (métiers du sport et de l'animation), Adultes Relais.</li>
+                        <li><strong>Lien social & été</strong> : Quartiers d'Été (activités culturelles et sportives pour prévenir l'isolement estival).</li>
+                    </ul>
+                </section>
+            </article>
+
+            <!-- Quiz d'Auto-Évaluation -->
+            <section class="quiz-card">
+                <h3>Test de Connaissances Rapide</h3>
+
+                <div class="quiz-question">
+                    <p class="quiz-q-title">1. Quel événement de 1954 a accéléré la construction d'urgence des grands ensembles HLM ?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt-btn" onclick="checkAnswer(1, 0)">A) Le premier choc pétrolier</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(1, 1)">B) L'appel hivernal de l'Abbé Pierre face aux personnes mourant de froid</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(1, 2)">C) Les violences urbaines des Minguettes</button>
+                    </div>
+                    <div id="fb1" class="quiz-feedback"></div>
                 </div>
-            </div>
+
+                <div class="quiz-question">
+                    <p class="quiz-q-title">2. Depuis la loi Lamy de 2014, quel est le critère UNIQUE pour déterminer un Quartier Prioritaire (QPV) ?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt-btn" onclick="checkAnswer(2, 0)">A) La concentration de bas revenus (critère de pauvreté)</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(2, 1)">B) Le taux de criminalité dans la ville</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(2, 2)">C) La date de construction des barres d'immeubles</button>
+                    </div>
+                    <div id="fb2" class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <p class="quiz-q-title">3. Quel binôme d'acteurs assure la co-responsabilité et le pilotage local des Contrats de Ville ?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-opt-btn" onclick="checkAnswer(3, 0)">A) Le Ministre et le Recteur d'Académie</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(3, 1)">B) Le Préfet (État) et le Maire / Président d'intercommunalité</button>
+                        <button class="quiz-opt-btn" onclick="checkAnswer(3, 2)">C) La Police municipale et les bailleurs HLM</button>
+                    </div>
+                    <div id="fb3" class="quiz-feedback"></div>
+                </div>
+            </section>
         </div>
 
-        <!-- Sidebar MOOC Chapters -->
-        <aside class="course-sidebar-card">
-            <div class="sidebar-heading">
-                <span>📑 Chapitres du Cours</span>
-                <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">12 modules</span>
-            </div>
-
-            <div class="chapters-scroll" id="chaptersList">
-                <div class="chapter-btn active" onclick="jumpTo(0)">
-                    <div class="chapter-badge-num">1</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">Introduction & Sommaire</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Vue d'ensemble du cours</div>
-                    </div>
+        <!-- Colonne Latérale : Chapitres Vidéo/Audio -->
+        <aside>
+            <div class="chapters-panel">
+                <div class="chapters-header">
+                    <span>Chapitres</span>
+                    <span>12 modules</span>
                 </div>
-                <div class="chapter-btn" onclick="jumpTo(1)">
-                    <div class="chapter-badge-num">2</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">1. Définition & Droits</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Loi Lamy 2014 & Droits</div>
+                <div class="chapters-list" id="chaptersList">
+                    <div class="chapter-item active" onclick="jumpTo(0)">
+                        <span class="chapter-num">01</span>
+                        <span class="chapter-title-text">Introduction & Sommaire</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(2)">
-                    <div class="chapter-badge-num">3</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">2. Origines : Après-guerre</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Abbé Pierre 1954</div>
+                    <div class="chapter-item" onclick="jumpTo(1)">
+                        <span class="chapter-num">02</span>
+                        <span class="chapter-title-text">1. Définition & Droits (Loi 2014)</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(3)">
-                    <div class="chapter-badge-num">4</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">2. Grands Ensembles & 1973</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Chute économique & chômage</div>
+                    <div class="chapter-item" onclick="jumpTo(2)">
+                        <span class="chapter-num">03</span>
+                        <span class="chapter-title-text">2. Origines : Après-guerre 1954</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(4)">
-                    <div class="chapter-badge-num">5</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">2. Naissance 1977-1981</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Minguettes, ZEP, exclusion</div>
+                    <div class="chapter-item" onclick="jumpTo(3)">
+                        <span class="chapter-num">04</span>
+                        <span class="chapter-title-text">2. Grands Ensembles & Choc 1973</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(5)">
-                    <div class="chapter-badge-num">6</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">3. Les 4 Piliers Fondamentaux</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Territoriale, transversale...</div>
+                    <div class="chapter-item" onclick="jumpTo(4)">
+                        <span class="chapter-num">05</span>
+                        <span class="chapter-title-text">2. Naissance 1977-1981</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(6)">
-                    <div class="chapter-badge-num">7</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">4. Les QPV : Critères Loi 2014</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Critère unique de pauvreté</div>
+                    <div class="chapter-item" onclick="jumpTo(5)">
+                        <span class="chapter-num">06</span>
+                        <span class="chapter-title-text">3. Les 4 Piliers Fondamentaux</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(7)">
-                    <div class="chapter-badge-num">8</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">4. Contrats & Quartiers 2030</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Les 4 nouveaux axes</div>
+                    <div class="chapter-item" onclick="jumpTo(6)">
+                        <span class="chapter-num">07</span>
+                        <span class="chapter-title-text">4. Les QPV : Critères Loi 2014</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(8)">
-                    <div class="chapter-badge-num">9</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">5. Les Acteurs Nationaux</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">État, ANCT, ANRU, ONPV</div>
+                    <div class="chapter-item" onclick="jumpTo(7)">
+                        <span class="chapter-num">08</span>
+                        <span class="chapter-title-text">4. Contrats & Quartiers 2030</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(9)">
-                    <div class="chapter-badge-num">10</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">5. Les Acteurs Locaux</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Le binôme Préfet - Maire</div>
+                    <div class="chapter-item" onclick="jumpTo(8)">
+                        <span class="chapter-num">09</span>
+                        <span class="chapter-title-text">5. Les Acteurs Nationaux</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(10)">
-                    <div class="chapter-badge-num">11</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">6. Dispositifs du Terrain</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Cités éducatives, AVIP, Sésame</div>
+                    <div class="chapter-item" onclick="jumpTo(9)">
+                        <span class="chapter-num">10</span>
+                        <span class="chapter-title-text">5. Les Acteurs Locaux</span>
                     </div>
-                </div>
-                <div class="chapter-btn" onclick="jumpTo(11)">
-                    <div class="chapter-badge-num">12</div>
-                    <div>
-                        <div style="font-size: 0.88rem; font-weight: 700;">Mémento Examen Final</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">La carte mentale de révision</div>
+                    <div class="chapter-item" onclick="jumpTo(10)">
+                        <span class="chapter-num">11</span>
+                        <span class="chapter-title-text">6. Dispositifs du Terrain</span>
+                    </div>
+                    <div class="chapter-item" onclick="jumpTo(11)">
+                        <span class="chapter-num">12</span>
+                        <span class="chapter-title-text">Mémento Examen Final</span>
                     </div>
                 </div>
             </div>
         </aside>
-
-        <!-- Printable Bristol Card Section -->
-        <section class="bristol-section">
-            <div class="bristol-sheet">
-                <div class="bristol-header">
-                    <div>
-                        <span class="brand-tag">FICHE BRISTOL OFFICIELLE • PRÊTE POUR LE BAC</span>
-                        <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.3rem;">La Politique de la Ville en France</h2>
-                    </div>
-                    <button class="btn btn-primary" onclick="printBristol()">
-                        🖨️ Imprimer la Fiche Bristol (Format A4)
-                    </button>
-                </div>
-
-                <div class="bristol-grid">
-                    <div class="bristol-card" style="border-left-color: var(--primary);">
-                        <h4>1. Définition Légale (Loi Lamy 2014)</h4>
-                        <p style="font-size: 0.92rem; margin-bottom: 0.8rem; color: var(--text-main);">
-                            Politique de <strong>cohésion urbaine</strong> et de <strong>solidarité</strong> pour réduire les écarts de développement envers les quartiers défavorisés (QPV).
-                        </p>
-                        <ul>
-                            <li>Garantit l'accès aux droits fondamentaux (logement, emploi, éducation).</li>
-                            <li>Portée conjointement par l'État et les collectivités territoriales.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-emerald);">
-                        <h4>2. Genèse & Chocs Économiques</h4>
-                        <ul>
-                            <li><strong>1945/1954</strong> : destructions d'après-guerre, bidonvilles, appel de l'Abbé Pierre.</li>
-                            <li><strong>1955-1970</strong> : grands ensembles construits vite (quantité > qualité).</li>
-                            <li><strong>1973</strong> : chocs pétroliers, chômage ouvrier, départ des classes moyennes en pavillons.</li>
-                            <li><strong>1981</strong> : violences des Minguettes, ZEP et concept d'exclusion.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-cyan);">
-                        <h4>3. Les 4 Piliers Incontournables</h4>
-                        <ul>
-                            <li><strong>Territoriale</strong> : ciblée sur les zones en difficulté (les QPV).</li>
-                            <li><strong>Transversale</strong> : décloisonne les politiques (école, emploi, sécurité, bâti).</li>
-                            <li><strong>Partenariale & Contractuelle</strong> : formalisée par le Contrat de Ville (6 ans).</li>
-                            <li><strong>Participative</strong> : Conseils Citoyens obligatoires avec les habitants.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-amber);">
-                        <h4>4. Les QPV : 3 Critères d'Entrée</h4>
-                        <ul>
-                            <li>Appartenir à une unité urbaine de <strong>plus de 10 000 habitants</strong>.</li>
-                            <li>Compter au minimum <strong>1 000 habitants</strong> dans le quartier.</li>
-                            <li><strong>Critère unique de pauvreté</strong> : concentration de bas revenus (< 11 250 €/an).</li>
-                            <li>Fin des anciens zonages complexes (ZUS, ZRU, ZFU).</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--primary);">
-                        <h4>5. Les Acteurs Majeurs</h4>
-                        <ul>
-                            <li><strong>National</strong> : État (Premier ministre, CIV), ANCT (projets), ANRU (rénovation Borloo 2003), ONPV.</li>
-                            <li><strong>Local</strong> : Binôme inséparable <strong>Préfet (État) / Maire (Commune)</strong>.</li>
-                            <li>Bailleurs HLM, CAF, France Travail, associations et habitants.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bristol-card" style="border-left-color: var(--accent-rose);">
-                        <h4>6. Dispositifs Clés du Cours</h4>
-                        <ul>
-                            <li><strong>Éducation</strong> : Cités Éducatives (0-25 ans), Cordées de la Réussite (2008), CPI.</li>
-                            <li><strong>Emploi</strong> : Sésame (sport/animation), crèches AVIP (horaires élargis), Adultes Relais.</li>
-                            <li><strong>Quartiers d'Été</strong> : activités estivales pour prévenir l'oisiveté.</li>
-                            <li><strong>Quartiers 2030</strong> : plein emploi, écologie, éducation et tranquillité.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Quiz Section -->
-        <section class="bristol-section" style="margin-top: 1.5rem;">
-            <div class="bristol-sheet">
-                <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem;">🎯 Mini-Quiz d'Auto-Évaluation</h3>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="font-weight: 700; margin-bottom: 0.6rem;">1. Quel événement de 1954 a accéléré la construction d'urgence des grands ensembles ?</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn" onclick="checkQ(1, 0, this)">A) Le premier choc pétrolier</button>
-                        <button class="btn" onclick="checkQ(1, 1, this)">B) L'appel hivernal de l'Abbé Pierre face aux personnes mourant de froid</button>
-                        <button class="btn" onclick="checkQ(1, 2, this)">C) Les émeutes des Minguettes à Vénissieux</button>
-                    </div>
-                    <div id="fb1" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
-                </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="font-weight: 700; margin-bottom: 0.6rem;">2. Depuis la loi Lamy de 2014, quel est le critère UNIQUE pour déterminer un QPV ?</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn" onclick="checkQ(2, 0, this)">A) La concentration de bas revenus / critère de pauvreté des habitants</button>
-                        <button class="btn" onclick="checkQ(2, 1, this)">B) Le nombre de tours HLM dans la commune</button>
-                        <button class="btn" onclick="checkQ(2, 2, this)">C) L'éloignement kilométrique de la capitale</button>
-                    </div>
-                    <div id="fb2" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
-                </div>
-
-                <div>
-                    <p style="font-weight: 700; margin-bottom: 0.6rem;">3. Quel binôme d'acteurs est au cœur du pilotage local des Contrats de Ville ?</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <button class="btn" onclick="checkQ(3, 0, this)">A) Le Ministre et le Recteur d'Académie</button>
-                        <button class="btn" onclick="checkQ(3, 1, this)">B) Le Préfet (représentant l'État) et le Maire / Président d'EPCI</button>
-                        <button class="btn" onclick="checkQ(3, 2, this)">C) Le Commissaire et le Directeur de la CAF</button>
-                    </div>
-                    <div id="fb3" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
-                </div>
-            </div>
-        </section>
-
     </div>
 </main>
 
-<!-- Footer -->
-<footer style="background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 2.5rem 2rem; text-align: center; margin-top: auto;">
-    <div style="max-width: 1320px; margin: 0 auto; font-size: 0.88rem; color: var(--text-muted);">
-        <strong>Le Hub Révision</strong> • Fiche et cours de révision en libre accès pour la classe.
-    </div>
+<footer class="site-footer">
+    <p>Plateforme de cours et de révision en libre accès pour la classe.</p>
 </footer>
 
 <script src="../../assets/js/app.js"></script>
@@ -322,8 +242,7 @@
     const audioWrapper = document.getElementById('audioWrapper');
     const btnModeVideo = document.getElementById('btnModeVideo');
     const btnModeAudio = document.getElementById('btnModeAudio');
-    const items = document.querySelectorAll('.chapter-btn');
-    const titleDisplay = document.getElementById('currentSlideTitle');
+    const items = document.querySelectorAll('.chapter-item');
     const timestamps = [0.0, 26.68, 54.4, 81.92, 110.12, 137.92, 167.08, 194.24, 221.72, 249.2, 276.4, 307.72];
 
     function switchMediaMode(mode) {
@@ -357,7 +276,7 @@
         if ('mediaSession' in navigator) {
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: title,
-                artist: 'Le Hub Révision',
+                artist: 'Cours & Révisions',
                 album: 'Bac ST2S & SES',
                 artwork: [
                     { src: 'slides/slide_01.png', sizes: '512x512', type: 'image/png' }
@@ -396,18 +315,9 @@
 
     function updateActive(index) {
         items.forEach((item, idx) => {
-            if (idx === index) {
-                item.classList.add('active');
-                titleDisplay.innerText = item.querySelector('div > div:first-child').innerText;
-            } else {
-                item.classList.remove('active');
-            }
+            if (idx === index) item.classList.add('active');
+            else item.classList.remove('active');
         });
-    }
-
-    function setSpeed(speed) {
-        video.playbackRate = speed;
-        audio.playbackRate = speed;
     }
 
     function onTimeUpdate(currentTime) {
@@ -427,22 +337,22 @@
         if (currentMode === 'audio') onTimeUpdate(audio.currentTime);
     });
 
-    function checkQ(q, opt, btn) {
+    function checkAnswer(q, opt) {
         const correct = { 1: 1, 2: 0, 3: 1 };
         const fb = document.getElementById('fb' + q);
         fb.style.display = 'block';
         if (opt === correct[q]) {
-            fb.innerHTML = '<span style="color: var(--accent-emerald);">✅ Excellente réponse ! Bien joué.</span>';
+            fb.style.color = 'var(--success)';
+            fb.innerText = '✓ Bonne réponse !';
         } else {
-            fb.innerHTML = '<span style="color: var(--accent-rose);">❌ Mauvaise réponse. Révisez la fiche au-dessus !</span>';
+            fb.style.color = 'var(--danger)';
+            fb.innerText = '✗ Réponse incorrecte. Relisez la fiche ci-dessus.';
         }
     }
 
-    // Auto setup media session on page load
     document.addEventListener('DOMContentLoaded', () => {
         setupMediaSession("La Politique de la Ville en France");
     });
 </script>
-
 </body>
 </html>

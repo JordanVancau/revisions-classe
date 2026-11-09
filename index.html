@@ -3,171 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Hub Révision • Plateforme Académique pour le Bac</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Cours & Révisions</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<header class="navbar">
-    <div class="nav-container">
-        <a href="index.html" class="brand-wrap">
-            <div class="brand-logo">📚</div>
-            <div class="brand-text">
-                <span class="brand-tag">Lycée • Spécial Bac</span>
-                <h1>Le Hub Révision</h1>
-            </div>
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo-area">
+            <span>📚 Cours & Révisions</span>
+            <span class="logo-badge">Terminale & Première</span>
         </a>
-
-        <div class="nav-controls">
-            <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Changer de thème">
-                🌙
-            </button>
+        <div class="header-actions">
+            <button class="btn-icon" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Changer le thème">🌙</button>
         </div>
     </div>
 </header>
 
-<!-- Academic Hero Section -->
-<section class="hero-academic">
-    <div class="academic-badge">
-        <span>🎓</span> Espace de Travail Collaboratif • Terminale & Première
-    </div>
-    <h2>Réviser Efficacement, Ensemble.</h2>
-    <p>Des résumés vidéos de haute précision, des schémas visuels décryptés, des fiches bristol prêtes à imprimer et des quiz pour valider vos connaissances.</p>
-
-    <!-- Progress Tracker Widget -->
-    <div class="progress-widget-bar">
-        <div class="progress-header">
-            <span>🎯 Mon Avancement Bac</span>
-            <span id="progressPercent" style="color: var(--primary);">0%</span>
-        </div>
-        <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.6rem; font-size: 0.82rem; color: var(--text-muted);">
-            <span id="progressCount">0 sur 2 cours maîtrisés</span>
-            <span>Cochez les cours au fur et à mesure !</span>
-        </div>
-    </div>
-</section>
-
-<!-- Main Course Directory -->
-<main class="main-wrapper">
-    <div class="toolbar-wrap">
-        <div class="search-field">
-            <span class="search-icon-svg">🔍</span>
-            <input type="text" id="searchInput" placeholder="Rechercher un thème, mot-clé (QPV, CAF, natalité...)" oninput="filterCourses()">
-        </div>
-
-        <div class="filter-group">
-            <button class="filter-pill active" onclick="setFilter('all', this)">Tous les cours</button>
-            <button class="filter-pill" onclick="setFilter('ST2S', this)">ST2S</button>
-            <button class="filter-pill" onclick="setFilter('SES', this)">SES</button>
-        </div>
+<main class="container">
+    <div class="home-hero">
+        <h1>Tous les cours</h1>
+        <p>Vidéos explicatives complètes, synthèses de cours et écoute audio optimisée pour l'arrière-plan (voiture et GPS).</p>
     </div>
 
-    <!-- Courses Grid -->
-    <div class="courses-grid" id="courseGrid">
-
+    <div class="courses-grid">
         <!-- Cours 1 : Politique Familiale -->
-        <article class="course-academic-card" data-subject="ST2S / SES" data-title="La Politique Familiale en France" data-tags="politique familiale caf cohésion sociale sécurité sociale allocations st2s ses bac">
-            <div class="card-media">
-                <span class="badge-subject-pill">ST2S / SES • Terminale</span>
-                <img src="cours/politique-famille/slides/slide_01.png" alt="Miniature Politique Familiale">
-                <span class="badge-duration-pill">⏱️ 06:31</span>
+        <article class="course-card">
+            <div class="course-thumb-wrap">
+                <img src="cours/politique-famille/slides/slide_01.png" alt="Miniature cours Politique Familiale">
+                <span class="course-duration">06:31</span>
             </div>
-            <div class="card-content">
-                <div style="display: flex; gap: 0.4rem; margin-bottom: 0.6rem; flex-wrap: wrap;">
-                    <span style="font-size: 0.72rem; background: var(--accent-emerald-bg); color: var(--accent-emerald); border: 1px solid var(--accent-emerald); padding: 0.2rem 0.55rem; border-radius: 999px; font-weight: 700;">🎧 Écoute Arrière-plan & GPS</span>
-                    <span style="font-size: 0.72rem; background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border-color); padding: 0.2rem 0.55rem; border-radius: 999px; font-weight: 600;">📥 MP4 1080p + MP3</span>
+            <div class="course-card-body">
+                <span class="course-tag">ST2S / SES</span>
+                <h2>La Politique Familiale en France</h2>
+                <p>Définition de la cohésion sociale, les 6 objectifs fondamentaux, les 4 approches (universalisme vs ciblage) et les 5 modes d'intervention de l'État et de la CAF.</p>
+                <div class="course-features-pills">
+                    <span class="feature-pill">Vidéo HD</span>
+                    <span class="feature-pill">Audio GPS / Arrière-plan</span>
+                    <span class="feature-pill">Fiche synthèse</span>
                 </div>
-                <h3>La Politique Familiale en France</h3>
-                <p>Définition officielle, cohésion sociale, 6 objectifs fondamentaux, 4 approches (universalisme vs ciblage), 5 modes d'intervention et grands défis.</p>
-                <div class="card-footer-academic">
-                    <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer; font-weight: 600;">
-                        <input type="checkbox" id="chk-politique-famille" onchange="toggleCourseCompletion('politique-famille')">
-                        <span>Cours révisé</span>
-                    </label>
-                    <a href="cours/politique-famille/index.html" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
-                        Accéder au cours ▶
-                    </a>
+                <div class="course-card-footer">
+                    <span style="font-size: 0.82rem; color: var(--text-tertiary);">12 modules</span>
+                    <a href="cours/politique-famille/index.html" class="btn btn-primary">Consulter le cours →</a>
                 </div>
             </div>
         </article>
 
         <!-- Cours 2 : Politique de la Ville -->
-        <article class="course-academic-card" data-subject="ST2S / SES" data-title="La Politique de la Ville en France" data-tags="politique de la ville qpv loi lamy anru anct minguettes st2s ses bac abbé pierre cités éducatives">
-            <div class="card-media">
-                <span class="badge-subject-pill" style="border-color: rgba(56, 189, 248, 0.5);">ST2S / SES • Terminale</span>
-                <img src="cours/politique-ville/slides/slide_01.png" alt="Miniature Politique de la Ville">
-                <span class="badge-duration-pill">⏱️ 05:40</span>
+        <article class="course-card">
+            <div class="course-thumb-wrap">
+                <img src="cours/politique-ville/slides/slide_01.png" alt="Miniature cours Politique de la Ville">
+                <span class="course-duration">05:40</span>
             </div>
-            <div class="card-content">
-                <div style="display: flex; gap: 0.4rem; margin-bottom: 0.6rem; flex-wrap: wrap;">
-                    <span style="font-size: 0.72rem; background: var(--accent-emerald-bg); color: var(--accent-emerald); border: 1px solid var(--accent-emerald); padding: 0.2rem 0.55rem; border-radius: 999px; font-weight: 700;">🎧 Écoute Arrière-plan & GPS</span>
-                    <span style="font-size: 0.72rem; background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border-color); padding: 0.2rem 0.55rem; border-radius: 999px; font-weight: 600;">📥 MP4 1080p + MP3</span>
+            <div class="course-card-body">
+                <span class="course-tag">ST2S / SES</span>
+                <h2>La Politique de la Ville en France</h2>
+                <p>Genèse historique depuis 1945 et le choc économique de 1973, Loi Lamy 2014, critères QPV, les 4 piliers d'action et le binôme Préfet-Maire.</p>
+                <div class="course-features-pills">
+                    <span class="feature-pill">Vidéo HD</span>
+                    <span class="feature-pill">Audio GPS / Arrière-plan</span>
+                    <span class="feature-pill">Fiche synthèse</span>
                 </div>
-                <h3>La Politique de la Ville en France</h3>
-                <p>Genèse historique depuis 1945 et les chocs pétroliers de 1973, Loi Lamy 2014, QPV, 4 caractéristiques clés, binôme Préfet-Maire et dispositifs concrets.</p>
-                <div class="card-footer-academic">
-                    <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer; font-weight: 600;">
-                        <input type="checkbox" id="chk-politique-ville" onchange="toggleCourseCompletion('politique-ville')">
-                        <span>Cours révisé</span>
-                    </label>
-                    <a href="cours/politique-ville/index.html" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem;">
-                        Accéder au cours ▶
-                    </a>
+                <div class="course-card-footer">
+                    <span style="font-size: 0.82rem; color: var(--text-tertiary);">12 modules</span>
+                    <a href="cours/politique-ville/index.html" class="btn btn-primary">Consulter le cours →</a>
                 </div>
             </div>
         </article>
-
     </div>
 </main>
 
-<!-- Footer Académique -->
-<footer style="background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 2.5rem 2rem; text-align: center; margin-top: auto;">
-    <div style="max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.88rem; color: var(--text-muted);">
-        <div>
-            <strong>Le Hub Révision</strong> • Conçu pour la réussite collective aux examens.
-        </div>
-        <div>
-            Fiches de cours & Vidéos 100% libres d'accès pour la classe.
-        </div>
-    </div>
+<footer class="site-footer">
+    <p>Plateforme de cours et de révision en libre accès pour la classe.</p>
 </footer>
 
 <script src="assets/js/app.js"></script>
-<script>
-    let currentCategory = 'all';
-
-    function setFilter(cat, btn) {
-        currentCategory = cat;
-        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        filterCourses();
-    }
-
-    function filterCourses() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        const cards = document.querySelectorAll('.course-academic-card');
-        
-        cards.forEach(card => {
-            const subject = card.getAttribute('data-subject') || '';
-            const title = (card.getAttribute('data-title') || '').toLowerCase();
-            const tags = (card.getAttribute('data-tags') || '').toLowerCase();
-            
-            const matchesCat = (currentCategory === 'all') || subject.includes(currentCategory);
-            const matchesQuery = !query || title.includes(query) || tags.includes(query);
-            
-            if (matchesCat && matchesQuery) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-</script>
-
 </body>
 </html>
