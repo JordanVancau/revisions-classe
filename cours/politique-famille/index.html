@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révision : La Politique Familiale en France (ST2S / SES)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b132b;
+            --surface: #131c38;
+            --surface-card: #1c2a4f;
+            --border: #2a3b68;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --emerald: #10b981;
+            --cyan: #06b6d4;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+            --purple: #a855f7;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(180deg, #162040 0%, #0e1733 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .badge-subject {
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-bottom: 0.4rem;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .btn {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.65rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #253766;
+            border-color: #3b5087;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: #818cf8;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen-frame {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .screen-frame video, .screen-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .player-controls {
+            padding: 1.25rem 1.5rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #223156;
+            border-radius: 999px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #38bdf8);
+            border-radius: 999px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .play-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-circle:hover {
+            background: var(--primary);
+            border-color: #818cf8;
+            transform: scale(1.05);
+        }
+
+        .btn-play-main {
+            width: 52px;
+            height: 52px;
+            background: var(--primary);
+            font-size: 1.4rem;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .time-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Sidebar navigation */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chapters-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 0.3rem;
+        }
+
+        .chapter-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.75rem 1rem;
+            background: var(--surface-card);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .chapter-item:hover {
+            background: #253766;
+            border-color: var(--border);
+        }
+
+        .chapter-item.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .chapter-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--border);
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .chapter-item.active .chapter-num {
+            background: var(--primary);
+            color: white;
+        }
+
+        .chapter-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .chapter-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chapter-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Summary tabs */
+        .summary-section {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+        }
+
+        .grid-2x3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .concept-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+        }
+
+        .border-indigo::before { background: var(--primary); }
+        .border-emerald::before { background: var(--emerald); }
+        .border-cyan::before { background: var(--cyan); }
+        .border-amber::before { background: var(--amber); }
+        .border-purple::before { background: var(--purple); }
+        .border-rose::before { background: var(--rose); }
+
+        .concept-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .concept-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.92rem;
+            color: #cbd5e1;
+        }
+
+        .concept-list li {
+            position: relative;
+            padding-left: 1.4rem;
+        }
+
+        .concept-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0.3rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <a href="../../index.html" class="btn" style="margin-bottom: 0.6rem; display: inline-flex; font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+            ← Retour au portail des cours
+        </a>
+        <div>
+            <span class="badge-subject">Sciences & Techniques Sanitaires et Sociales • SES</span>
+            <h1>La Politique Familiale en France (Révision Vidéo & Fiche)</h1>
+        </div>
+    </div>
+    <div class="header-actions">
+        <a href="video.mp4" class="btn btn-primary" download="Revision_Politique_Famille_1080p.mp4">
+            📥 Télécharger la Vidéo MP4 (1080p)
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="video-container">
+        <div class="screen-frame">
+            <video id="mainVideo" controls poster="slides/slide_01.png">
+                <source src="video.mp4" type="video/mp4">
+                Votre navigateur ne prend pas en charge la balise vidéo.
+            </video>
+        </div>
+        <div class="player-controls">
+            <div class="controls-row">
+                <span style="font-weight: 600; font-size: 1.05rem;" id="currentSlideTitle">1. Introduction & Présentation</span>
+                <span class="time-display" id="videoDuration">06:31</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="card">
+            <div class="card-title">📑 Chapitres du Cours</div>
+            <div class="chapters-list" id="chapterList">
+                <div class="chapter-item active" onclick="jumpTo(0)">
+                    <div class="chapter-num">1</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">Introduction & Sommaire</div>
+                        <div class="chapter-sub">Vue d'ensemble du cours</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(1)">
+                    <div class="chapter-num">2</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">1. Qu'est-ce que la politique familiale ?</div>
+                        <div class="chapter-sub">Définition & Cohésion sociale</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(2)">
+                    <div class="chapter-num">3</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">2. Les 6 Objectifs (Partie 1)</div>
+                        <div class="chapter-sub">Soutien, vie & natalité</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(3)">
+                    <div class="chapter-num">4</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">2. Les 6 Objectifs (Partie 2)</div>
+                        <div class="chapter-sub">Égalité, finances & travail</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(4)">
+                    <div class="chapter-num">5</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">3. Les 4 Approches (Partie 1)</div>
+                        <div class="chapter-sub">Sociale vs Nataliste</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(5)">
+                    <div class="chapter-num">6</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">3. Les 4 Approches (Partie 2)</div>
+                        <div class="chapter-sub">Ciblée vs Universaliste</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(6)">
+                    <div class="chapter-num">7</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">4. Les 5 Modes d'Action (Partie 1)</div>
+                        <div class="chapter-sub">Aides financières & crèches/écoles</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(7)">
+                    <div class="chapter-num">8</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">4. Les 5 Modes d'Action (Partie 2)</div>
+                        <div class="chapter-sub">Fiscalité, social & travail</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(8)">
+                    <div class="chapter-num">9</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">5. Les 4 Acteurs Clés (Partie 1)</div>
+                        <div class="chapter-sub">L'État & La CAF</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(9)">
+                    <div class="chapter-num">10</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">5. Les 4 Acteurs Clés (Partie 2)</div>
+                        <div class="chapter-sub">Collectivités & Associations</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(10)">
+                    <div class="chapter-num">11</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">6. Limites & Nouveaux Défis</div>
+                        <div class="chapter-sub">Inégalités, monoparentalité & coût</div>
+                    </div>
+                </div>
+                <div class="chapter-item" onclick="jumpTo(11)">
+                    <div class="chapter-num">12</div>
+                    <div class="chapter-info">
+                        <div class="chapter-title">Mémento Examen Final</div>
+                        <div class="chapter-sub">Carte mentale de révision</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">💡 Astuce Révision</div>
+            <p style="font-size: 0.9rem; color: #cbd5e1;">
+                Ce cours insiste sur la notion de <strong>Cohésion Sociale</strong> et l'arbitrage entre <strong>Universalisme</strong> (solidarité nationale) et <strong>Ciblage</strong> (protection des plus modestes). Maîtrisez les sigles : CAF, CNAF, PMI, ASE, ARS, PAJE.
+            </p>
+        </div>
+    </div>
+
+    <section class="summary-section">
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">🧠 Fiche Mémento : Les 6 Piliers à Retenir</h2>
+        <div class="grid-2x3">
+            <div class="concept-card border-indigo">
+                <div class="concept-title" style="color: #a5b4fc;">1. DÉFINITION OFFICIELLE</div>
+                <p style="font-size: 0.92rem; color: #e2e8f0; margin-bottom: 0.8rem;">
+                    « Ensemble des actions mises en place par les pouvoirs publics pour favoriser la <strong>cohésion sociale</strong> et compenser les charges familiales. »
+                </p>
+                <ul class="concept-list">
+                    <li>Solidarité horizontale (ménages sans enfant ➔ avec enfant)</li>
+                    <li>Solidarité verticale (revenus aisés ➔ revenus modestes)</li>
+                </ul>
+            </div>
+
+            <div class="concept-card border-emerald">
+                <div class="concept-title" style="color: #6ee7b7;">2. LES 6 OBJECTIFS</div>
+                <ul class="concept-list">
+                    <li><strong>Soutenir les familles</strong> : appui éducatif, parentalité, LAEP.</li>
+                    <li><strong>Améliorer la vie</strong> : logement salubre, santé, PMI.</li>
+                    <li><strong>Favoriser la natalité</strong> : renouvellement des générations.</li>
+                    <li><strong>Réduire les inégalités</strong> : égalité des chances dès 3 ans.</li>
+                    <li><strong>Aider financièrement</strong> : compensation des frais réels.</li>
+                    <li><strong>Vie perso & pro</strong> : crèches, congés parentaux.</li>
+                </ul>
+            </div>
+
+            <div class="concept-card border-cyan">
+                <div class="concept-title" style="color: #67e8f9;">3. LES 4 APPROCHES</div>
+                <ul class="concept-list">
+                    <li><strong>Sociale</strong> : besoins sociaux et bien-être des familles.</li>
+                    <li><strong>Nataliste</strong> : stimuler les naissances et la fécondité.</li>
+                    <li><strong>Ciblée</strong> : réservée aux modestes sous conditions de ressources (ex: ARS).</li>
+                    <li><strong>Universaliste</strong> : versée à toutes les familles sans distinction (Allocations familiales).</li>
+                    <li><em>Système mixte en France depuis 2015 !</em></li>
+                </ul>
+            </div>
+
+            <div class="concept-card border-amber">
+                <div class="concept-title" style="color: #fcd34d;">4. LES 5 MODES D'ACTION</div>
+                <ul class="concept-list">
+                    <li><strong>Aides financières</strong> : Allocations familiales, PAJE, ARS, ASF.</li>
+                    <li><strong>Services & équipements</strong> : Crèches, écoles maternelles dès 3 ans, cantines.</li>
+                    <li><strong>Mesures fiscales</strong> : Quotient familial, crédits d'impôt garde.</li>
+                    <li><strong>Actions sociales</strong> : Protection enfance (ASE), PMI, centres sociaux.</li>
+                    <li><strong>Mesures liées au travail</strong> : Congés maternité, paternité (28j), congé parental.</li>
+                </ul>
+            </div>
+
+            <div class="concept-card border-purple">
+                <div class="concept-title" style="color: #d8b4fe;">5. LES 4 ACTEURS MAJEURS</div>
+                <ul class="concept-list">
+                    <li><strong>L'État</strong> : vote les lois, le budget de la Sécu (PLFSS) et priorités.</li>
+                    <li><strong>La CAF / CNAF</strong> : verse les aides à 13M de foyers et subventionne les crèches.</li>
+                    <li><strong>Collectivités territoriales</strong> : Départements (ASE, PMI) & Communes (crèches, écoles).</li>
+                    <li><strong>Associations</strong> : UNAF/UDAF, Restos du Cœur, Secours Populaire.</li>
+                </ul>
+            </div>
+
+            <div class="concept-card border-rose">
+                <div class="concept-title" style="color: #fda4af;">6. LIMITES & NOUVEAUX DÉFIS</div>
+                <ul class="concept-list">
+                    <li><strong>Inégalités persistantes</strong> : 1 enfant sur 5 vit sous le seuil de pauvreté.</li>
+                    <li><strong>Nouvelles formes familiales</strong> : 1 famille sur 4 est monoparentale, familles recomposées.</li>
+                    <li><strong>Pénurie de modes de garde</strong> : manque de 200 000 places en crèche, impact sur les mères.</li>
+                    <li><strong>Coût très élevé</strong> : plus de 50 milliards d'euros / an pour l'État.</li>
+                </ul>
+            </div>
+        </div>
+    <section class="summary-section" style="margin-top: 2rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem;">🎯 Mini-Quiz d'Auto-Évaluation (Spécial Bac)</h2>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;" id="quizContainer">
+            <div id="q1" style="margin-bottom: 1.5rem;">
+                <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.8rem;">1. Quelle est la finalité première de la politique familiale selon le cours ?</p>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="btn quiz-opt" onclick="checkAnswer(1, 0)">A) Réduire uniquement les dépenses publiques de santé</button>
+                    <button class="btn quiz-opt" onclick="checkAnswer(1, 1)">B) Favoriser la cohésion sociale et compenser les charges familiales</button>
+                    <button class="btn quiz-opt" onclick="checkAnswer(1, 2)">C) Rendre l'école payante pour financer les crèches</button>
+                </div>
+                <div id="q1-feedback" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
+            </div>
+
+            <div id="q2" style="margin-bottom: 1.5rem;">
+                <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.8rem;">2. Depuis la réforme de 2015, quelle est la spécificité des Allocations Familiales en France ?</p>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="btn quiz-opt" onclick="checkAnswer(2, 0)">A) Elles sont devenues modulées selon les revenus du foyer (système mixte)</button>
+                    <button class="btn quiz-opt" onclick="checkAnswer(2, 1)">B) Elles sont supprimées dès le 2e enfant</button>
+                    <button class="btn quiz-opt" onclick="checkAnswer(2, 2)">C) Elles sont versées uniquement sous forme de bons d'achat</button>
+                </div>
+                <div id="q2-feedback" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
+            </div>
+
+            <div id="q3">
+                <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.8rem;">3. Quel acteur local a la compétence OBLIGATOIRE de la protection de l'enfance (ASE) et de la PMI ?</p>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="btn quiz-opt" onclick="checkAnswer(3, 0)">A) La Mairie / Commune</button>
+                    <button class="btn quiz-opt" onclick="checkAnswer(3, 1)">B) Le Conseil Départemental</button>
+                    <button class="btn quiz-opt" onclick="checkAnswer(3, 2)">C) L'Union Européenne</button>
+                </div>
+                <div id="q3-feedback" style="margin-top: 0.5rem; font-weight: 600; display: none;"></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Révision élaborée pour la réussite des épreuves de Sciences Sanitaires & Sociales (ST2S) et Sciences Économiques & Sociales (SES).
+</footer>
+
+<script>
+    function checkAnswer(q, opt) {
+        const correct = { 1: 1, 2: 0, 3: 1 };
+        const fb = document.getElementById('q' + q + '-feedback');
+        fb.style.display = 'block';
+        if (opt === correct[q]) {
+            fb.innerHTML = '<span style="color: var(--emerald);">✅ Bonne réponse ! Bravo.</span>';
+        } else {
+            fb.innerHTML = '<span style="color: var(--rose);">❌ Mauvaise réponse. Révisez la vidéo ou la fiche mémento au-dessus !</span>';
+        }
+    }
+</script>
+
+<script>
+    const video = document.getElementById('mainVideo');
+    const items = document.querySelectorAll('.chapter-item');
+    const titleDisplay = document.getElementById('currentSlideTitle');
+
+    // Timestamps précis calculés automatiquement pour les 12 scènes
+    const timestamps = [0.0, 31.96, 61.04, 95.16, 130.24, 158.84, 191.68, 221.4, 254.8, 287.0, 318.4, 359.48];
+
+    function jumpTo(index) {
+        if (index >= 0 && index < timestamps.length) {
+            video.currentTime = timestamps[index];
+            video.play();
+            updateActive(index);
+        }
+    }
+
+    function updateActive(index) {
+        items.forEach((item, idx) => {
+            if (idx === index) {
+                item.classList.add('active');
+                titleDisplay.innerText = item.querySelector('.chapter-title').innerText;
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    video.addEventListener('timeupdate', () => {
+        const ct = video.currentTime;
+        for (let i = timestamps.length - 1; i >= 0; i--) {
+            if (ct >= timestamps[i]) {
+                updateActive(i);
+                break;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
