@@ -25,10 +25,13 @@
 
         <div class="nav-controls">
             <button class="btn" onclick="printBristol()" title="Imprimer la Fiche Bristol pour réviser">
-                🖨️ Imprimer Fiche Bristol
+                🖨️ Fiche Bristol
             </button>
-            <a href="video.mp4" class="btn btn-primary" download="Politique_de_la_Ville_1080p.mp4">
-                📥 Télécharger Vidéo (05:40)
+            <a href="audio.mp3" class="btn" download="Politique_Ville_Podcast.mp3" title="Télécharger le son pour écouter en voiture ou sans connexion">
+                🎧 Télécharger Audio MP3
+            </a>
+            <a href="video.mp4" class="btn btn-primary" download="Politique_de_la_Ville_1080p.mp4" title="Télécharger la vidéo complète">
+                📥 Télécharger Vidéo MP4 (1080p)
             </a>
             <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Changer de thème">
                 🌙
@@ -41,13 +44,37 @@
 <main class="main-wrapper">
     <div class="course-layout">
         
-        <!-- Video Player MOOC Frame -->
+        <!-- Media Player Column -->
         <div>
-            <div class="video-frame-academic">
-                <video id="mainVideo" controls poster="slides/slide_01.png">
+            <!-- Mode Switcher (Video vs Audio Arrière-Plan) -->
+            <div class="player-mode-wrap">
+                <button id="btnModeVideo" class="mode-tab-btn active" onclick="switchMediaMode('video')">
+                    🎬 Mode Vidéo HD
+                </button>
+                <button id="btnModeAudio" class="mode-tab-btn" onclick="switchMediaMode('audio')">
+                    🎧 Mode Audio / Voiture & GPS (Arrière-plan actif)
+                </button>
+            </div>
+
+            <!-- Video Player Frame -->
+            <div class="video-frame-academic" id="videoWrapper">
+                <video id="mainVideo" controls poster="slides/slide_01.png" playsinline>
                     <source src="video.mp4" type="video/mp4">
                     Votre navigateur ne prend pas en charge la balise vidéo.
                 </video>
+            </div>
+
+            <!-- Audio Podcast Frame (Background Friendly for Car / GPS) -->
+            <div class="audio-podcast-frame" id="audioWrapper">
+                <img src="slides/slide_01.png" alt="Pochette Cours" class="podcast-cover-art">
+                <div class="podcast-tag-car">
+                    🚗 Mode Écoute Arrière-Plan Actif • Compatible GPS (Waze / Maps) & Écran Éteint
+                </div>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem;">La Politique de la Ville en France</h3>
+                <p style="font-size: 0.92rem; color: var(--text-muted); max-width: 480px; margin-bottom: 1rem;">
+                    Ce lecteur audio continue de tourner en arrière-plan lorsque vous verrouillez votre écran ou que votre application GPS vous guide.
+                </p>
+                <audio id="mainAudio" src="audio.mp3" controls class="audio-native-bar" preload="metadata"></audio>
             </div>
 
             <!-- Video Meta Bar -->
@@ -288,15 +315,81 @@
 
 <script src="../../assets/js/app.js"></script>
 <script>
+    let currentMode = 'video';
     const video = document.getElementById('mainVideo');
+    const audio = document.getElementById('mainAudio');
+    const videoWrapper = document.getElementById('videoWrapper');
+    const audioWrapper = document.getElementById('audioWrapper');
+    const btnModeVideo = document.getElementById('btnModeVideo');
+    const btnModeAudio = document.getElementById('btnModeAudio');
     const items = document.querySelectorAll('.chapter-btn');
     const titleDisplay = document.getElementById('currentSlideTitle');
     const timestamps = [0.0, 26.68, 54.4, 81.92, 110.12, 137.92, 167.08, 194.24, 221.72, 249.2, 276.4, 307.72];
 
+    function switchMediaMode(mode) {
+        currentMode = mode;
+        if (mode === 'audio') {
+            const time = video.currentTime;
+            const wasPlaying = !video.paused;
+            video.pause();
+            videoWrapper.style.display = 'none';
+            audioWrapper.classList.add('active');
+            btnModeVideo.classList.remove('active');
+            btnModeAudio.classList.add('active');
+            audio.currentTime = time;
+            if (wasPlaying) audio.play();
+            setupMediaSession("La Politique de la Ville en France (Podcast)");
+        } else {
+            const time = audio.currentTime;
+            const wasPlaying = !audio.paused;
+            audio.pause();
+            audioWrapper.classList.remove('active');
+            videoWrapper.style.display = 'block';
+            btnModeAudio.classList.remove('active');
+            btnModeVideo.classList.add('active');
+            video.currentTime = time;
+            if (wasPlaying) video.play();
+            setupMediaSession("La Politique de la Ville en France (Vidéo)");
+        }
+    }
+
+    function setupMediaSession(title) {
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: title,
+                artist: 'Le Hub Révision',
+                album: 'Bac ST2S & SES',
+                artwork: [
+                    { src: 'slides/slide_01.png', sizes: '512x512', type: 'image/png' }
+                ]
+            });
+            navigator.mediaSession.setActionHandler('play', () => {
+                if (currentMode === 'audio') audio.play(); else video.play();
+            });
+            navigator.mediaSession.setActionHandler('pause', () => {
+                if (currentMode === 'audio') audio.pause(); else video.pause();
+            });
+            navigator.mediaSession.setActionHandler('seekbackward', () => {
+                const target = currentMode === 'audio' ? audio : video;
+                target.currentTime = Math.max(target.currentTime - 10, 0);
+            });
+            navigator.mediaSession.setActionHandler('seekforward', () => {
+                const target = currentMode === 'audio' ? audio : video;
+                target.currentTime = Math.min(target.currentTime + 10, target.duration);
+            });
+        }
+    }
+
     function jumpTo(index) {
         if (index >= 0 && index < timestamps.length) {
-            video.currentTime = timestamps[index];
-            video.play();
+            const time = timestamps[index];
+            if (currentMode === 'audio') {
+                audio.currentTime = time;
+                audio.play();
+            } else {
+                video.currentTime = time;
+                video.play();
+            }
             updateActive(index);
         }
     }
@@ -314,16 +407,24 @@
 
     function setSpeed(speed) {
         video.playbackRate = speed;
+        audio.playbackRate = speed;
     }
 
-    video.addEventListener('timeupdate', () => {
-        const ct = video.currentTime;
+    function onTimeUpdate(currentTime) {
         for (let i = timestamps.length - 1; i >= 0; i--) {
-            if (ct >= timestamps[i]) {
+            if (currentTime >= timestamps[i]) {
                 updateActive(i);
                 break;
             }
         }
+    }
+
+    video.addEventListener('timeupdate', () => {
+        if (currentMode === 'video') onTimeUpdate(video.currentTime);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        if (currentMode === 'audio') onTimeUpdate(audio.currentTime);
     });
 
     function checkQ(q, opt, btn) {
@@ -336,6 +437,11 @@
             fb.innerHTML = '<span style="color: var(--accent-rose);">❌ Mauvaise réponse. Révisez la fiche au-dessus !</span>';
         }
     }
+
+    // Auto setup media session on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        setupMediaSession("La Politique de la Ville en France");
+    });
 </script>
 
 </body>
